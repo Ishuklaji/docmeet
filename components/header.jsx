@@ -1,10 +1,12 @@
+import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { Button } from "./ui/button";
 
 const Header = () => {
   return (
-    <header className="fixed top-0  border-b bg-background/80 backdrop-blur-md z-10 supports-backdrop-filter:bg-background/60">
+    <header className="fixed top-0 w-full border-b bg-background/80 backdrop-blur-md z-10 supports-backdrop-filter:bg-background/60">
       <nav className="container  mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/">
           <Image
@@ -15,6 +17,25 @@ const Header = () => {
             className="h-10 w-auto object-contain"
           />
         </Link>
+        <div className="flex items-center space-x-2">
+          <Show when="signed-out">
+            <SignInButton>
+              <Button variant="secondary">Sign In</Button>
+            </SignInButton>
+          </Show>
+          <Show when="signed-in">
+            <UserButton
+              appearance={{
+                elements: {
+                  avatarBox: "w-10 h-10",
+                  userButtonPopoverCard: "shadow-xl",
+                  userPreviewMainIdentifier: "font-semibold",
+                },
+              }}
+              afterSignOutUrl="/"
+            />
+          </Show>
+        </div>
       </nav>
     </header>
   );
