@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-   <div className="py-32">Hi to World
+   <div className="py-32">Hi to World !
     <br/>
     <Button>Click me</Button>
    </div>
